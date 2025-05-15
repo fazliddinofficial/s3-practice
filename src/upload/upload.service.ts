@@ -30,7 +30,7 @@ export class UploadService {
     };
 
     await this.s3.send(new PutObjectCommand(params));
-
-    return { url: fileName };
+    const fileUrl = `${this.configService.get<string>('S3_ENDPOINT')}/${bucketName}/${fileName}`;
+    return { url: fileUrl };
   }
 }
